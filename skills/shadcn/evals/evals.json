@@ -42,6 +42,53 @@
         "Uses gap-* instead of space-y-* or space-x-* for spacing",
         "Uses size-* when width and height are equal instead of separate w-* h-*"
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "Build a pricing page for my SaaS analytics product using shadcn/ui (base-nova preset, lucide icons, Next.js App Router). Three tiers: Starter, Pro, Enterprise. The Pro plan should be highlighted. Include a monthly/annual toggle and a FAQ section below. Make it look professional and polished — not generic.",
+      "expected_output": "A pricing page with intentional color choices (not default purple gradient), distinctive typography, clear visual hierarchy highlighting the Pro plan, ToggleGroup for billing period, Accordion for FAQ, and semantic color usage throughout.",
+      "files": [],
+      "expectations": [
+        "Uses a deliberate color palette with CSS variables (not raw Tailwind colors) — primary for the highlighted plan CTA, muted/secondary for others",
+        "Recommends or uses a specific font pairing beyond the system default (e.g. a Google Fonts import for headings)",
+        "Pro plan card has clear visual distinction (size, border, background, or Badge) creating hierarchy over other tiers",
+        "Uses ToggleGroup for monthly/annual billing toggle instead of custom button state management",
+        "Uses Accordion for FAQ section instead of custom show/hide divs",
+        "Varies spacing intentionally — tighter within cards, generous between pricing grid and FAQ section",
+        "Does not use a purple-on-white gradient or other generic AI aesthetic pattern"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Create a dashboard layout for an internal DevOps monitoring tool. It needs: a collapsible sidebar with navigation, a header with search and user avatar, a main area with 3 metric cards at the top, a large chart showing request latency over time, and a table of recent incidents below. Using shadcn/ui with base-nova preset, lucide icons, Next.js. Dark mode should be the default.",
+      "expected_output": "A dashboard with dark-mode-first design, technical/utilitarian aesthetic, Sidebar component, Chart with themed --chart-* colors, data Table, metric Cards with proper hierarchy, and responsive considerations.",
+      "files": [],
+      "expectations": [
+        "Uses Sidebar component for navigation (not a custom div-based sidebar)",
+        "Uses Chart component (Recharts wrapper) for the latency chart with --chart-* CSS variable theming",
+        "Metric cards use full Card composition (CardHeader/CardTitle/CardContent) with Badge for status",
+        "Dark mode is configured as default (not just supported) — color choices work in dark theme",
+        "Information density is appropriate for a monitoring tool — compact spacing within data areas, not overly spacious",
+        "Table uses the Table component with proper structure, not a custom grid",
+        "Avatar includes AvatarFallback in the header",
+        "Mentions or implements responsive behavior (e.g. Sidebar collapsing, Table adapting on mobile)"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Build a portfolio landing page for a freelance photographer named Sarah Chen. It should have a hero section with her name and tagline, a filterable gallery grid of her work (categories: portrait, landscape, street), a brief about section, and a contact form. Use shadcn/ui with base-nova preset and lucide icons on Next.js. I want it to feel artistic and distinctive, not like a template.",
+      "expected_output": "A portfolio page with bold aesthetic direction — distinctive font pairing (e.g. serif headings), intentional color palette, generous whitespace, entrance animations on gallery items, and artistic layout choices that don't feel cookie-cutter.",
+      "files": [],
+      "expectations": [
+        "Uses a distinctive font pairing appropriate for a creative portfolio (e.g. serif or display heading font, not just system sans-serif)",
+        "Color palette suits a creative/artistic context — not a corporate blue or generic purple",
+        "Gallery uses ToggleGroup for category filtering instead of custom button state",
+        "Contact form uses FieldGroup + Field composition with proper validation",
+        "Hero section has visual impact — generous sizing, strong typography hierarchy, not just centered small text",
+        "Includes entrance animation or transition effect on gallery items (staggered reveal, fade-in, etc.) with motion-safe prefix",
+        "Layout has at least one non-standard element (asymmetric grid, full-bleed section, overlapping elements) to avoid template feel",
+        "About section uses controlled line length (max-w-prose or similar) for readability"
+      ]
     }
   ]
 }

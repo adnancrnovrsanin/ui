@@ -1,6 +1,6 @@
 ---
 name: shadcn
-description: Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI. Provides project context, component docs, and usage examples. Applies when working with shadcn/ui, component registries, presets, --preset codes, or any project with a components.json file. Also triggers for "shadcn init", "create an app with --preset", or "switch to --preset".
+description: Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI with high design quality. Provides project context, component docs, usage examples, and design guidance (color palettes, typography, visual hierarchy, animation, UX). Applies when working with shadcn/ui, component registries, presets, --preset codes, or any project with a components.json file. Also triggers for "shadcn init", "create an app with --preset", "switch to --preset", or when building, designing, or styling any web UI with shadcn components.
 user-invocable: false
 allowed-tools: Bash(npx shadcn@latest *), Bash(pnpm dlx shadcn@latest *), Bash(bunx --bun shadcn@latest *)
 ---
@@ -25,6 +25,39 @@ The JSON above contains the project config and installed components. Use `npx sh
 2. **Compose, don't reinvent.** Settings page = Tabs + Card + form controls. Dashboard = Sidebar + Card + Chart + Table.
 3. **Use built-in variants before custom styles.** `variant="outline"`, `size="sm"`, etc.
 4. **Use semantic colors.** `bg-primary`, `text-muted-foreground` — never raw values like `bg-blue-500`.
+5. **Design with intent.** Every page deserves a deliberate aesthetic direction — color, typography, layout, and motion choices that fit the product context. See [Design Quality](#design-quality) below.
+
+## Design Quality
+
+When building new pages, components, or layouts, make design decisions before reaching for components. Good component usage with poor design choices still produces a mediocre result.
+
+### Before You Code
+
+1. **Who is this for?** Consumer app, internal tool, developer product, creative portfolio — each calls for a different aesthetic.
+2. **What's the tone?** Professional and restrained, warm and approachable, bold and expressive, minimal and refined — pick a direction and commit to it.
+3. **What makes it memorable?** One distinctive choice (a striking color accent, an unexpected font pairing, a signature micro-interaction) elevates the whole design above "competent but forgettable."
+
+### Design Principles
+
+- **Respect initialization choices.** The user's preset, theme, font, base color, and style from `ui.shadcn.com/create` or `npx shadcn init` are deliberate decisions. Build on them — don't override them. Only change colors, fonts, or theme variables when the user explicitly asks.
+- **Intentional color.** Work with the user's chosen palette. Extend it with semantic tokens (success, warning) when needed rather than replacing `--primary` or `--accent`. See [rules/design.md → Color Systems](./rules/design.md#color-systems) for guidance and reference palettes.
+- **Distinctive typography.** The user's chosen font is the body default. If the design needs more personality, suggest adding a heading font to complement it — don't swap the body font. See [rules/design.md → Typography](./rules/design.md#typography) for reference pairings.
+- **Visual hierarchy.** Size, spacing, and contrast do the heavy lifting — not color alone. Lead the eye from the primary action to supporting content. Use generous whitespace between sections; controlled density within cards and data views.
+- **Purposeful motion.** Animate to communicate state changes, spatial relationships, and loading progress — not to decorate. 150–300ms for micro-interactions; staggered reveals for lists. See [rules/design.md → Animation](./rules/design.md#animation--motion).
+- **UX rigor.** Contrast ≥ 4.5:1, visible focus rings, touch targets ≥ 44px, visible labels on every input. These aren't optional — they're the baseline. See [rules/design-ux.md](./rules/design-ux.md) for the full checklist.
+
+### Avoid Generic AI Aesthetics
+
+These patterns signal "AI-generated" and undermine perceived quality:
+
+- Purple-on-white gradient with generic sans-serif — the #1 AI slop fingerprint
+- Overriding the user's chosen preset colors/fonts without being asked
+- Every section using the same Card → even spacing → centered text layout
+- Timid, evenly-distributed color (a little blue here, a little gray there) instead of a confident palette with clear hierarchy
+- Placeholder-heavy UIs without real content structure
+- Decorative animations that serve no communication purpose
+
+For detailed guidance: [rules/design.md](./rules/design.md) (color, typography, layout, animation) · [rules/design-ux.md](./rules/design-ux.md) (accessibility, charts, responsive patterns)
 
 ## Critical Rules
 
@@ -166,6 +199,7 @@ npx shadcn@latest docs button dialog select
 ## Workflow
 
 1. **Get project context** — already injected above. Run `npx shadcn@latest info` again if you need to refresh.
+   > **For new pages or layouts:** Before selecting components, read [rules/design.md](./rules/design.md) for aesthetic direction (color palette, font pairing, layout approach) and [rules/design-ux.md](./rules/design-ux.md) for UX quality. Make design decisions first — they influence which components and layout patterns to use.
 2. **Check installed components first** — before running `add`, always check the `components` list from project context or list the `resolvedPaths.ui` directory. Don't import components that haven't been added, and don't re-add ones already installed.
 3. **Find components** — `npx shadcn@latest search`.
 4. **Get docs and examples** — run `npx shadcn@latest docs <component>` to get URLs, then fetch them. Use `npx shadcn@latest view` to browse registry items you haven't installed. To preview changes to installed components, use `npx shadcn@latest add --diff`.
@@ -233,6 +267,8 @@ npx shadcn@latest view @shadcn/button
 
 ## Detailed References
 
+- [rules/design.md](./rules/design.md) — Design thinking, color palettes (OKLCH), font pairings, visual hierarchy, animation timing, anti-patterns
+- [rules/design-ux.md](./rules/design-ux.md) — Accessibility checklist, touch targets, form UX, navigation, chart theming, responsive component selection
 - [rules/forms.md](./rules/forms.md) — FieldGroup, Field, InputGroup, ToggleGroup, FieldSet, validation states
 - [rules/composition.md](./rules/composition.md) — Groups, overlays, Card, Tabs, Avatar, Alert, Empty, Toast, Separator, Skeleton, Badge, Button loading
 - [rules/icons.md](./rules/icons.md) — data-icon, icon sizing, passing icons as objects
